@@ -16,10 +16,6 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(express.static("public"));
 app.use("/uploads/posts", authenticateToken, express.static("uploads/posts"));
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
-});
 
 // const JWT_SECRET = process.env.JWT_SECRET;
 // const MONGO_URL = process.env.MONGO_URL;
