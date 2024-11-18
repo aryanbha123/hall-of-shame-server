@@ -16,6 +16,10 @@ app.use(express.json());
 app.use(fileUpload());
 app.use(express.static("public"));
 app.use("/uploads/posts", authenticateToken, express.static("uploads/posts"));
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send("Something broke!");
+});
 
 // const JWT_SECRET = process.env.JWT_SECRET;
 // const MONGO_URL = process.env.MONGO_URL;
@@ -24,7 +28,9 @@ const JWT_SECRET = "ACHHE DIN AA GYE HAI";
 // const MONGO_URL = process.env.MONGO_URL;
 
 mongoose
-  .connect("mongodb+srv://vrputin180:dGfWUmeNrHAMaKgF@cluster0.0csu5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .connect(
+    "mongodb+srv://vrputin180:dGfWUmeNrHAMaKgF@cluster0.0csu5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error("Connection error:", err));
 
