@@ -256,6 +256,10 @@ app.get("/api/protected/verifyuser", authenticateToken, async (req, res) => {
   return res.status(200).json({ message: "User verified" });
 });
 
+app.get('/' , (req,res) => {
+  res.send("Hello World From Rajas Repo")
+})
+
 app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
