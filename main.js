@@ -60,7 +60,7 @@ const postSchema = new mongoose.Schema({
 const User = mongoose.model("users", userSchema);
 const Post = mongoose.model("posts", postSchema);
 
-app.get("/", () => {
+app.get("/", (req,res) => {
   return res.send("Hello from the server");
 });
 
